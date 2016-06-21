@@ -20,9 +20,9 @@ INTLTOOL_REQUIRED_VERSION=0.36.3
 LIBTOOL_REQUIRED_VERSION=1.5
 
 
-PROJECT="GIMP Plug-In Template"
+PROJECT="GIMP VTF"
 TEST_TYPE=-f
-FILE=src/render.c
+FILE=gimp-vtf/file-vtf.c
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.

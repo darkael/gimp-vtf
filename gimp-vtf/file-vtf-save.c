@@ -164,7 +164,7 @@ void remove_dummy_lg()
 	}
 }
 
-gboolean show_options(const gint32 image_ID);
+static gboolean show_options(const gint32 image_ID);
 void create_vtf(gint32 layer_group, gboolean is_main_group);
 
 void save(gint nparams, const GimpParam* param, gint* nreturn_vals)
@@ -326,7 +326,7 @@ void save(gint nparams, const GimpParam* param, gint* nreturn_vals)
 		g_assert(path_mixed);
 
 		layergroups.cur->path = g_ascii_strdown(path_mixed,len);
-		layergroups.cur->filename = strrchr(layergroups.cur->path,'\\') + 1;
+		layergroups.cur->filename = strrchr(layergroups.cur->path,'/') + 1;
 		
 		g_free(path_mixed);
 			
@@ -529,6 +529,9 @@ void create_vtf(gint32 layer_group, gboolean is_main_group)
 		vlVTFOpt.uiFlags &= ~TEXTUREFLAGS_NORMAL;
 		break;
 	}
+	// FIXME thumbnails not working
+	vlVTFOpt.bThumbnail = vlFalse;
+
 
 	// Handle alpha layers
 	if ( layergroups.cur->VtfOpt.AlphaLayerTattoo && vtf_format_has_alpha(select_vtf_format_index(&layergroups.cur->VtfOpt)) )

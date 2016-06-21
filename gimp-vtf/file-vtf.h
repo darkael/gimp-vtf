@@ -13,14 +13,15 @@
 #define FILE_VTF_H
 
 #include "VTFLib.h"
+#include "VTFWrapper.h"
 
 #include <string.h>
 
-#include "config.h.win32"
+#include "config.h"
 #include <libgimp/gimp.h>
 #include <glib/gstdio.h>
 #define HAVE_BIND_TEXTDOMAIN_CODESET
-#include "libgimp/stdplugins-intl.h"
+#include "plugin-intl.h"
 
 #define SAVE_PROC		"file-vtf-save"
 #define LOAD_PROC		"file-vtf-load"
