@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = po src help
+#SUBDIRS = po gimp-vtf help
+SUBDIRS = po gimp-vtf
 
 EXTRA_DIST = \
 	BUGS			\

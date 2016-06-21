@@ -82,8 +82,7 @@ static void query()
 		{ GIMP_PDB_LAYER,	"target-lg",	"The layer group being saved. (-1 = ignore layer groups)" },
 	} ;
 
-	// no effect
-	//gboolean res = gimp_plugin_domain_register(TEXT_DOMAIN,MO_PATH);
+	gimp_plugin_domain_register(GETTEXT_PACKAGE, LOCALEDIR);
 
 	gimp_install_procedure (LOAD_PROC,
 		"Loads Valve Texture Format files",
@@ -166,19 +165,17 @@ static void run(const gchar* name, gint nparams, const GimpParam* param, gint* n
 		gtk_widget_destroy (MessageBox);
 	}
 #endif
-	
-	plugin_dir = g_new(gchar,MAX_PATH);
-	snprintf(plugin_dir,MAX_PATH,"%s\\plug-ins",gimp_directory());
-	plugin_locale_dir = g_new(gchar,MAX_PATH);
-	snprintf(plugin_locale_dir,MAX_PATH,"%s\\locale",plugin_dir);
 
 #ifdef _WIN32
 	install_locale(strcmp(name, SAVE_PROC) == 0);
 	register_filetype();
 #endif
 	
-	bindtextdomain( TEXT_DOMAIN, plugin_locale_dir );
-	textdomain(TEXT_DOMAIN);
+	bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+#ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+#endif
+	textdomain(GETTEXT_PACKAGE);
 
 	// Fall back on English if needs be (thank god this is a separate process!)
 	// You're supposed to embed the English text in the code so that a fallback isn't needed,
