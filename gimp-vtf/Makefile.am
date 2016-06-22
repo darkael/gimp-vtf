@@ -12,13 +12,11 @@ gimp_vtf_SOURCES = \
 	file-vtf-save.c
 
 AM_CPPFLAGS = \
-	-DLOCALEDIR=\""$(LOCALEDIR)"\"		\
-	-DDATADIR=\""$(DATADIR)"\"
-
-INCLUDES =\
-	-I$(top_srcdir)		\
-	@GIMP_CFLAGS@		\
-	@VTFLIB_CFLAGS@		\
+	-DLOCALEDIR=\""$(LOCALEDIR)"\" \
+	-DDATADIR=\""$(DATADIR)"\" \
+	-I$(top_srcdir) \
+	@GIMP_CFLAGS@ \
+	@VTFLIB_CFLAGS@ \
 	-I$(includedir)
 
 LDADD = $(GIMP_LIBS) -ltxc_dxtn $(VTFLIB_LIBS) -lm
