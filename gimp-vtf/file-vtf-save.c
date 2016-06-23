@@ -234,7 +234,7 @@ void save(gint nparams, const GimpParam* param, gint* nreturn_vals)
 		gint*	children;
 		gint	num_children;
 
-		gchar *path_mixed=0; // mixed case
+		gchar *path=0; // mixed case
 		guint len=0;
 
 		children = gimp_item_get_children(layer_IDs_root[i], &num_children);
@@ -313,23 +313,21 @@ void save(gint nparams, const GimpParam* param, gint* nreturn_vals)
 		if (layergroups.cur->is_main)
 		{
 			len = (guint)strlen(filename) + 4 + 1;
-			path_mixed = g_new(gchar,len);
-			snprintf(path_mixed,len,"%s.vtf",filename);
+			path = g_new(gchar,len);
+			snprintf(path,len,"%s.vtf",filename);
 		}
 		else
 		{
 			len = (guint)(strlen(filename) + 1 + strlen(layergroups.cur->name) + 4 + 1);
-			path_mixed = g_new(gchar,len);
-			snprintf(path_mixed,len,"%s_%s.vtf",filename,layergroups.cur->name);
+			path = g_new(gchar,len);
+			snprintf(path,len,"%s_%s.vtf",filename,layergroups.cur->name);
 		}
 
-		g_assert(path_mixed);
+		g_assert(path);
 
-		layergroups.cur->path = g_ascii_strdown(path_mixed,len);
+		layergroups.cur->path = path;
 		layergroups.cur->filename = strrchr(layergroups.cur->path,'/') + 1;
 		
-		g_free(path_mixed);
-			
 		layergroups.cur++;
 	}
 	filename[strlen(filename)] = '.';
